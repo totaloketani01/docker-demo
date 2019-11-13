@@ -1,13 +1,13 @@
-## ãƒ™ãƒ¼ã‚¹ã‚¤ãƒ¡ãƒ¼ã‚¸
+## ƒx[ƒXƒCƒ[ƒW
 FROM centos:centos7
 
-## ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚·ã‚§ãƒ«ã®æŒ‡å®š
+## ƒfƒtƒHƒ‹ƒgƒVƒFƒ‹‚Ìw’è
 #SHELL ["/bin/bash", "-c"]
 
-## æ§‹ç¯‰ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆã‚’ä½œæˆ
+## \’zƒfƒBƒŒƒNƒg‚ğì¬
 WORKDIR /django
 
-# å¿…è¦ãªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+# •K—v‚ÈƒpƒbƒP[ƒW‚ğƒCƒ“ƒXƒg[ƒ‹
 RUN yum -y update \
  && yum -y install \
     epel-release \
@@ -19,7 +19,7 @@ RUN yum -y update \
     make \
  && yum clean all
 
-## ãƒ­ã‚±ãƒ¼ã‚·ãƒ§ãƒ³è¨­å®š(æ—¥æœ¬èªãƒ­ã‚±ãƒ¼ãƒ«ã‚’è¨­å®š)
+## ƒƒP[ƒVƒ‡ƒ“İ’è(“ú–{ŒêƒƒP[ƒ‹‚ğİ’è)
 RUN yum reinstall -y glibc-common \
  && yum clean all
 ENV LANG ja_JP.UTF-8
@@ -29,7 +29,7 @@ RUN localedef -f UTF-8 -i ja_JP ja_JP.UTF-8 \
  && ln -sf /usr/share/zoneinfo/Asia/Tokyo /etc/localtime \
  && echo 'KEYMAP="jp106"' > /etc/vconsole.conf
 
-## python3ç³»ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+## python3Œn‚ğƒCƒ“ƒXƒg[ƒ‹
 RUN yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 RUN yum install -y \
     python36u \
@@ -39,7 +39,7 @@ RUN yum install -y \
  && ln -sf /usr/bin/python3.6 /usr/bin/python3 \
  && ln -sf /usr/bin/pip3.6 /usr/bin/pip3
 
-## SQLite3.28.0 ã‚’ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+## SQLite3.28.0 ‚ğƒCƒ“ƒXƒg[ƒ‹
 WORKDIR /usr/local/src
 RUN wget https://www.sqlite.org/2019/sqlite-autoconf-3280000.tar.gz \
  && tar xvfz sqlite-autoconf-3280000.tar.gz
@@ -56,13 +56,12 @@ RUN rm -fr sqlite-autoconf-3280000* \
 
 WORKDIR /django
 
-## Python3 ãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ã‚¤ãƒ³ã‚¹ãƒˆãƒ¼ãƒ«
+## Python3 ƒpƒbƒP[ƒWƒCƒ“ƒXƒg[ƒ‹
 RUN pip3 install --upgrade pip
 RUN pip3 install django
 
-# Django ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆèµ·å‹•
+# Django ƒvƒƒWƒFƒNƒg‹N“®
 #RUN django-admin startproject helloworld
 
-# helloworld ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã¸ã‚½ãƒ¼ã‚¹ã‚³ãƒ¼ãƒ‰å±•é–‹ï¼ˆGit Cloneï¼‰
+# helloworld ƒvƒƒWƒFƒNƒg‚Öƒ\[ƒXƒR[ƒh“WŠJiGit Clonej
 RUN git clone https://e2d6dc478be07d9bdc8e7acb42211a5576aebf6c:x-oauth-basic@github.com/totaloketani01/django-helloworld.git helloworld
-
